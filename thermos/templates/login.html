@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Thermos -- Login{% endblock %}
+
+{% block content %}
+	<section>
+		<h1 style="clear:both">Please Login</h1>
+		<form action="/login" method="post">
+			{{ form.hidden_tag() }}
+			<table>
+				<tr>
+					<td>{{ form.username.label }}</td>
+					<td>{{ form.username(size=50) }}</td>
+				</tr>
+				<tr>
+					<td>{{ form.password.label }}</td>
+					<td>{{ form.password(size=50) }}</td>
+				</tr>
+				<tr>
+					<td>{{ form.remember_me.label }}</td>
+					<td>{{ form.remember_me }}</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><button type="submit">Log In</button></td>
+				</tr>
+			</table>
+		</form>
+	</section>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

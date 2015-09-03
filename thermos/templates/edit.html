@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block styles %}
+	{{ super() }}
+	<link rel="stylesheet" href="{{ url_for('static',filename='css/select2.css') }}">
+{% endblock %}
+
+{% block title %}
+Thermos -- {{ title }}
+{% endblock %}
+
+{% block content %}
+	<section>
+		<h1>{{ title }}</h1>
+		<form action="" method="post">
+			{{ form.hidden_tag() }}
+			<table>
+			<tr>
+				<td>{{ form.url.label }}</td>
+				<td>{{ form.url(size=50) }}</td>
+			<tr>
+			<tr>
+				<td>{{ form.description.label }}</td>
+				<td>{{ form.description(size=50) }}</td>
+			</tr>
+			<tr>
+				<td>{{ form.tags.label }}</td>
+				<td>{{ form.tags(size=50,id="tags") }}</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><button type="submit">Submit</button></td>
+			</tr>
+			</table>
+		</form>
+	</section>
+{% endblock %}
+{% block sidebar %}
+{% endblock %}
+
+{% block scripts %}
+	<script type="text/javascript" src="{{ url_for('static',filename='js/vendor/select2.min.js') }}"></script>
+	<script>
+		$(document).ready(function(){
+			var _tags = {{ all_tags()|map(attribute='name')|list|tojson|safe }};
+			$('#tags').select2({tags: _tags, tokenSeparators: [","," "]});
+		});
+	</script>
+{% endblock %}
